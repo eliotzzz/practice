@@ -1,0 +1,50 @@
+tasks = {}  # Dictionary to store tasks
+
+def add_task(task_description):
+    task_id = len(tasks) + 1  # Generate a unique task ID
+    tasks[task_id] = {'description': task_description, 'completed': False}
+    print(f'Task "{task_description}" added with ID {task_id}.')
+
+def edit_task(task_id, new_description):
+    if task_id in tasks:
+        tasks[task_id]['description'] = new_description
+        print(f'Task {task_id} updated: {new_description}')
+    else:
+        print(f'Task {task_id} not found.')
+
+def delete_task(task_id):
+    if task_id in tasks:
+        del tasks[task_id]
+        print(f'Task {task_id} deleted.')
+    else:
+        print(f'Task {task_id} not found.')
+
+def mark_as_completed(task_id):
+    if task_id in tasks:
+        tasks[task_id]['completed'] = True
+        print(f'Task {task_id} marked as completed.')
+    else:
+        print(f'Task {task_id} not found.')
+
+def display_tasks():
+    if tasks:
+        print("ToDo List:")
+        for task_id, task_info in tasks.items():
+            status = 'Completed' if task_info['completed'] else 'Pending'
+            print(f"{task_id}. {task_info['description']} - {status}")
+    else:
+        print("No tasks found.")
+
+# Sample usage
+add_task("Complete assignment")
+add_task("Study for exam")
+display_tasks()
+
+edit_task(1, "Complete project")
+display_tasks()
+
+mark_as_completed(2)
+display_tasks()
+
+delete_task(1)
+display_tasks()
